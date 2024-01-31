@@ -1,0 +1,6 @@
+﻿Build started at 13:04...
+1>------ Build started: Project: InventoryManagementSystem, Configuration: Debug Any CPU ------
+1>Skipping analyzers to speed up the build. You can execute 'Build' or 'Rebuild' command to run analyzers.
+1>InventoryManagementSystem -> C:\Users\rakhi.kumari\OneDrive - Taazaa Tech Pvt Ltd\Desktop\InventoryManagementSystem\InventoryManagementSystem\bin\Debug\net8.0\InventoryManagementSystem.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 13:04 and took 00.725 seconds ==========
