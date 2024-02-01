@@ -2,10 +2,9 @@
 
 namespace InventoryManagementSystem.Domain
 {
-    public class Customer
+    public class Customer:BaseDomain
     {
-        [Key]
-        public int CustomerId { get; set; }
+      
         public String FistName { get; set; }
         public String LastName { get; set; }
         [Required]

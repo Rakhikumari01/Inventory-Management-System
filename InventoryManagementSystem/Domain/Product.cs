@@ -3,11 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementSystem.Domain
 {
-    public class Product
+    public class Product:BaseDomain
     {
 
-        [Key]
-        public int ProductId { get; set; }
+        
 
         public String ProductName { get; set; }
 

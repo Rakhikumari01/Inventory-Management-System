@@ -1,4 +1,6 @@
-﻿namespace InventoryManagementSystem.IRepository
+﻿using InventoryManagementSystem.Domain;
+
+namespace InventoryManagementSystem.IRepository
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -18,14 +20,14 @@
         /// this method delete a Product Cateogery in ProductCateogery table
         /// </summary>
         /// <param name="tentity"></param>
-        void Delete(TEntity tentity);
+        void Delete(int id);
 
         /// <summary>
         /// this method get a Product Cateogery in ProductCateogery table by its Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TEntity Get(TEntity tentity);
+        TEntity Get(int id);
 
     }
 }

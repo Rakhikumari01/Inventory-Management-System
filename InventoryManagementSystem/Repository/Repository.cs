@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace InventoryManagementSystem.Repository
 {
 
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseDomain
     {
         public InventoryDbContext _dbContext;
         public DbSet<TEntity> dbSet { get; set; }
@@ -23,17 +23,17 @@ namespace InventoryManagementSystem.Repository
             _dbContext.SaveChanges();
         }
 
-        public void Delete(TEntity tentity)
+        public void Delete(int id)
         {
             //var entity = _dbContext.Find(tentity);
-            _dbContext.Remove(tentity);
+            _dbContext.Remove(id);
             _dbContext.SaveChanges();
         }
 
-        public TEntity Get(TEntity tentity)
+        public TEntity Get(int id)
         {
-            var primaryKey = _dbContext.Entry(tentity).Property("CateogeryId").CurrentValue;
-            return dbSet.Find(primaryKey);
+            var entry = _dbContext.Find<TEntity>(id);
+            return entry;
         }
 
         public TEntity Update(TEntity tentity)

@@ -3,11 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementSystem.Domain
 {
-    public class Order
+    public class Order:BaseDomain
     {
 
-        [Key]
-        public int OrderId { get; set; }
+       
 
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }

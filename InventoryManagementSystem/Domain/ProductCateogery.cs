@@ -2,11 +2,10 @@
 
 namespace InventoryManagementSystem.Domain
 {
-    public class ProductCateogery
+    public class ProductCateogery:BaseDomain
     {
 
-        [Key]
-        public int CateogeryId { get; set; }
+        
 
         public String Name { get; set; }
 

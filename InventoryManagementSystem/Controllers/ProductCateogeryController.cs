@@ -26,17 +26,17 @@ namespace InventoryManagementSystem.Controllers
 
         [HttpDelete]
         [Route("delete")]
-        public IActionResult DeleteProductCateogery(ProductCateogery productCateogery)
+        public IActionResult DeleteProductCateogery(int id)
         {
-            _productCateogeryRepository.Delete(productCateogery);
+            _productCateogeryRepository.Delete(id);
             return Ok("ProductCteogery is deleted");
         }
 
         [HttpGet]
         [Route("get/productCateogeryById")]
-        public IActionResult getProductCateogeryById([FromQuery] ProductCateogery productCateogery)
+        public IActionResult getProductCateogeryById(int id)
         {
-            var pc = _productCateogeryRepository.Get(productCateogery);
+            var pc = _productCateogeryRepository.Get(id);
             return Ok(pc);
         }
 
