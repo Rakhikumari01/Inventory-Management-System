@@ -6,6 +6,7 @@ namespace InventoryManagementSystem
 {
     public class InventoryDbContext : DbContext
     {
+        public InventoryDbContext() { }
         public InventoryDbContext(DbContextOptions<InventoryDbContext> options) : base(options)
         {
         }

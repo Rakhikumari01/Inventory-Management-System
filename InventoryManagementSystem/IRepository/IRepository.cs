@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.Domain;
+using InventoryManagementSystem.NewFolder4;
 
 namespace InventoryManagementSystem.IRepository
 {
@@ -28,6 +29,6 @@ namespace InventoryManagementSystem.IRepository
         /// <param name="id"></param>
         /// <returns></returns>
         TEntity Get(int id);
-
+        
     }
 }

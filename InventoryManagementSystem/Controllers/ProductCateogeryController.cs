@@ -25,9 +25,10 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route("delete")]
+        [Route("delete/{id}")]
         public IActionResult DeleteProductCateogery(int id)
-        {
+        {   
+            
             _productCateogeryRepository.Delete(id);
             return Ok("ProductCteogery is deleted");
         }

@@ -3,7 +3,7 @@ using InventoryManagementSystem.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace InventoryManagementSystem.Repository
+namespace InventoryManagementSystem.Repositories
 {
 
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseDomain
@@ -25,9 +25,10 @@ namespace InventoryManagementSystem.Repository
 
         public void Delete(int id)
         {
-            //var entity = _dbContext.Find(tentity);
-            _dbContext.Remove(id);
+            var entry = _dbContext.Find<TEntity>(id);
+            _dbContext.Remove(entry);
             _dbContext.SaveChanges();
+            
         }
 
         public TEntity Get(int id)

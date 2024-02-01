@@ -1,8 +1,10 @@
 using InventoryManagementSystem;
 using InventoryManagementSystem.Domain;
+using InventoryManagementSystem.Implementations;
 using InventoryManagementSystem.IRepository;
-using InventoryManagementSystem.Repository;
+using InventoryManagementSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
+using InventoryManagementSystem.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<InventoryDbContext>(option =>
 
 builder.Services.AddScoped<IRepository<ProductCateogery>, Repository<ProductCateogery>>();
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 
 builder.Services.AddControllers();
