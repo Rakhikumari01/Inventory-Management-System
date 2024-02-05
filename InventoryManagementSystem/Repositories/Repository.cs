@@ -2,6 +2,7 @@
 using InventoryManagementSystem.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace InventoryManagementSystem.Repositories
 {
@@ -43,6 +44,23 @@ namespace InventoryManagementSystem.Repositories
             _dbContext.SaveChanges();
 
             return entry.Entity;
+        }
+
+        public ICollection<TEntity> GetAll(ICollection<int>? ids=null)
+        {
+            ICollection<TEntity> list = new List<TEntity>();
+            if (ids != null)
+            {
+                foreach (var id in ids)
+                {
+                    list.Add(Get(id));
+                }
+            }
+            else
+            {
+                list = _dbContext.Set<TEntity>().Where(t => t.Id != 0).ToList();
+            }
+            return list;
         }
     }
 }

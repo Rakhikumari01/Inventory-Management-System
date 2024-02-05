@@ -15,5 +15,7 @@ namespace InventoryManagementSystem
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Order> Order { get; set; }
 
+
+   
     }
 }

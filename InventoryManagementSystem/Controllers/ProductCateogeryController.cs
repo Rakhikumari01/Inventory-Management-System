@@ -17,7 +17,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpPost]
-        [Route("add")]
+        [Route("")]
         public IActionResult AddProductCateogery(ProductCateogery productCateogery)
         {
             _productCateogeryRepository.Add(productCateogery);
@@ -25,7 +25,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("/{id}")]
         public IActionResult DeleteProductCateogery(int id)
         {   
             
@@ -34,7 +34,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route("get/productCateogeryById")]
+        [Route("{id}")]
         public IActionResult getProductCateogeryById(int id)
         {
             var pc = _productCateogeryRepository.Get(id);
@@ -42,7 +42,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route("update/ProductCateogery")]
+        [Route("")]
         public IActionResult UpdateProductCateogery(ProductCateogery productCateogery)
         {
             var entry = _productCateogeryRepository.Update(productCateogery);

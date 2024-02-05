@@ -5,6 +5,8 @@ using InventoryManagementSystem.IRepository;
 using InventoryManagementSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 using InventoryManagementSystem.Interface;
+using InventoryManagementSystem.Service;
+using InventoryManagementSystem.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,10 @@ builder.Services.AddDbContext<InventoryDbContext>(option =>
 builder.Services.AddScoped<IRepository<ProductCateogery>, Repository<ProductCateogery>>();
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 
@@ -55,5 +61,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseEntityNotFoundMiddleware();
 
 app.Run();

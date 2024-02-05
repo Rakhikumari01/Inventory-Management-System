@@ -1,4 +1,5 @@
 ﻿
+using InventoryManagementSystem.Models;
 using InventoryManagementSystem.NewFolder4;
 
 namespace InventoryManagementSystem.Interface
@@ -8,11 +9,11 @@ namespace InventoryManagementSystem.Interface
 
         void AddProduct(ProductDto prouctDto);
 
-        ProductDto GetProduct(ProductDto prouctDto);
+        ViewProduct GetProduct(int id);
 
-        ProductDto UpdateProduct(ProductDto prouctDto);
+        void UpdateProduct(int id,ProductDto prouctDto);
 
-        void DeleteProduct(ProductDto prouctDto);
+        void DeleteProduct(int id);
 
     }
 }

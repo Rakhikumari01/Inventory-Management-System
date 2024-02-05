@@ -10,6 +10,6 @@ namespace InventoryManagementSystem.Domain
         [Required]
         public String email { get; set; }
         [Required]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber {  get; set; }
     }
 }

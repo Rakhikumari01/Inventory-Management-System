@@ -1,6 +1,7 @@
 ﻿using InventoryManagementSystem.Domain;
 using InventoryManagementSystem.Interface;
 using InventoryManagementSystem.IRepository;
+using InventoryManagementSystem.Models;
 using InventoryManagementSystem.NewFolder4;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,41 +11,47 @@ using System.Net;
 namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
-    [Route("Product/api")]
+    [Route("Product")]
     public class ProductController : Controller
     {
         public IProductService _productService;
 
-      
+
         public ProductController(IProductService productRepository)
         {
             _productService = productRepository;
         }
 
-        [HttpPost]
-        [Route("addProduct")]
-        public IActionResult AddProductItem([FromBody]ProductDto postDto)
+        [HttpPost("")]
+        public IActionResult AddProductItem([FromBody] ProductDto postDto)
         {
-            
+
             _productService.AddProduct(postDto);
             return Ok("Product Added Successfully");
         }
 
 
-        /*[HttpPut]
-        [Route("updateProduct/{id}")]
-        public IActionResult UpdateProduct([FromBody]ProductDto productDto)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateProduct(int id, [FromBody] ProductDto productDto)
         {
 
-            var updatedProduct = new Product()
-            {
-                ProductName = productDto.ProductName,
-                Quantity = productDto.Quantity,
-                Measurement = productDto.Measurement,
-                CateogeryId = productDto.CateogeryId,
-            };
-            _productRepository.UpdateProduct(updatedProduct);
-            return Ok(updatedProduct);
-        }*/
+            _productService.UpdateProduct(id, productDto);
+            return Ok("product updated successfully");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+
+            _productService.DeleteProduct(id);
+            return Ok("PRODUCT DELETED SUCCESSFULLY");
+        }
+
+        [HttpGet("{id}")]
+        public ViewProduct GetProduct(int id)
+        {
+            return _productService.GetProduct(id);
+
+        }
     }
 }
