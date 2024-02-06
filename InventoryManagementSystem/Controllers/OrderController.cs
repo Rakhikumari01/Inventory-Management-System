@@ -10,7 +10,7 @@ namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Route("api/order")]
-    [InventoryCheck]
+    [CustomExceptionFilter]
     public class OrderController : Controller
     {
         public IOrderService _orderservice;
@@ -28,7 +28,7 @@ namespace InventoryManagementSystem.Controllers
             try
             {
                 _orderservice.AddOrder(orderDto);
-                return Ok("order added successfully");
+                return Ok();
             }
           catch (InsufficientInventoryException ex)
             {
@@ -48,7 +48,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _orderservice.DeleteOrder(id);
-            return Ok("ORDER DELETED SUCCESSFULLY");
+            return Ok();
         }
 
 

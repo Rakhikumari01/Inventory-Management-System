@@ -27,7 +27,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _productService.AddProduct(postDto);
-            return Ok("Product Added Successfully");
+            return Ok();
         }
 
 
@@ -36,7 +36,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _productService.UpdateProduct(id, productDto);
-            return Ok("product updated successfully");
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -44,7 +44,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _productService.DeleteProduct(id);
-            return Ok("PRODUCT DELETED SUCCESSFULLY");
+            return Ok();
         }
 
         [HttpGet("{id}")]

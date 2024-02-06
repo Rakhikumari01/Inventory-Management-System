@@ -23,7 +23,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _customerService.AddCustomer(customerDto);
-            return Ok("Customer Added Successfully");
+            return Ok();
         }
 
         [HttpPatch]
@@ -32,7 +32,7 @@ namespace InventoryManagementSystem.Controllers
         { 
            _customerService.UpdateCustomer(id, customerDto);
 
-            return Ok("customer updated successfully");
+            return Ok();
         }
 
         [HttpDelete]
@@ -40,7 +40,7 @@ namespace InventoryManagementSystem.Controllers
         {
 
             _customerService.DeleteCustomer(id);
-            return Ok("Customer Deleted Successfully");
+            return Ok();
         }
 
         [HttpGet("get/{id}")]

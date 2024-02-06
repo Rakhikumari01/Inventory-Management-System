@@ -21,7 +21,7 @@ namespace InventoryManagementSystem.Controllers
         public IActionResult AddProductCateogery(ProductCateogery productCateogery)
         {
             _productCateogeryRepository.Add(productCateogery);
-            return Ok("ProductCateogery Added Successfully");
+            return Ok();
         }
 
         [HttpDelete]
@@ -30,7 +30,7 @@ namespace InventoryManagementSystem.Controllers
         {   
             
             _productCateogeryRepository.Delete(id);
-            return Ok("ProductCteogery is deleted");
+            return Ok();
         }
 
         [HttpGet]

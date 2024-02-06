@@ -34,6 +34,7 @@ namespace InventoryManagementSystem.Service
 
              UpdateProductQuantity(orderDto.ProductId, orderDto.Quantity);
             _orderservice.Add(order);
+
         }
 
         public void DeleteOrder(int id)
