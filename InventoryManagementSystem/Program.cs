@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using InventoryManagementSystem.Interface;
 using InventoryManagementSystem.Service;
 using InventoryManagementSystem.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,26 @@ builder.Services.AddDbContext<InventoryDbContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//Jwt configuration starts here
+var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
+var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(options =>
+ {
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         ValidIssuer = jwtIssuer,
+         ValidAudience = jwtIssuer,
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+     };
+ });
+//Jwt configuration ends here
+
 builder.Services.AddScoped<IRepository<ProductCateogery>, Repository<ProductCateogery>>();
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -23,6 +46,7 @@ builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 
 
@@ -57,6 +81,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
@@ -64,6 +89,6 @@ app.MapControllers();
 
 app.UseEntityNotFoundMiddleware();
 
-app.UseBasicAuthenticationMiddleware();
+//app.UseBasicAuthenticationMiddleware();
 
 app.Run();

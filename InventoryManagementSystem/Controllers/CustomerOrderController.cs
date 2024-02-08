@@ -1,11 +1,13 @@
 ﻿using InventoryManagementSystem.Interface;
 using InventoryManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Route("Report")]
+   
     public class CustomerOrderController : Controller
     {
         public ICustomerService _customerService;

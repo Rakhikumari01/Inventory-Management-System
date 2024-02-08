@@ -27,6 +27,7 @@ namespace InventoryManagementSystem.Service
                 FistName = customerDto.FirstName,
                 LastName = customerDto.LastName,
                 email = customerDto.email,
+                Password = customerDto.Password,
                 PhoneNumber = customerDto.PhoneNumber,
             };
 
@@ -52,7 +53,7 @@ namespace InventoryManagementSystem.Service
         }
 
         public void UpdateCustomer(int id, CustomerDto customerDto)
-        {
+        {  
             var updateCustomer = new Customer()
 
             {
@@ -60,6 +61,7 @@ namespace InventoryManagementSystem.Service
                 FistName = customerDto.FirstName,
                 LastName = customerDto.LastName,
                 email = customerDto.email,
+                Password = customerDto.Password,
                 PhoneNumber = customerDto.PhoneNumber,
             };
 

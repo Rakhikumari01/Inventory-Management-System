@@ -11,5 +11,7 @@ namespace InventoryManagementSystem.Domain
         public String email { get; set; }
         [Required]
         public string PhoneNumber {  get; set; }
+
+        public string Password { get; set; }
     }
 }

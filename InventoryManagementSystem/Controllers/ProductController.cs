@@ -3,6 +3,7 @@ using InventoryManagementSystem.Interface;
 using InventoryManagementSystem.IRepository;
 using InventoryManagementSystem.Models;
 using InventoryManagementSystem.NewFolder4;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics.Metrics;
@@ -12,6 +13,7 @@ namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Route("Product")]
+    [Authorize]
     public class ProductController : Controller
     {
         public IProductService _productService;

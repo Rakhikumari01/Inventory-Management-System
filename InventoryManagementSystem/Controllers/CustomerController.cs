@@ -3,11 +3,13 @@ using InventoryManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManagementSystem.NewFolder4;
 using InventoryManagementSystem.Implementations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Route("api/customer")]
+    [Authorize]
     public class CustomerController : Controller
     {
         public ICustomerService _customerService;

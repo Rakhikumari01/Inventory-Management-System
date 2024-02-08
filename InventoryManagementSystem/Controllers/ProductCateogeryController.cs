@@ -1,5 +1,6 @@
 ﻿using InventoryManagementSystem.Domain;
 using InventoryManagementSystem.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace InventoryManagementSystem.Controllers
 {
     [ApiController]
     [Route("api/ProductCateogery/")]
+   
     public class ProductCateogeryController :Controller
     {
         public  IRepository<ProductCateogery> _productCateogeryRepository;

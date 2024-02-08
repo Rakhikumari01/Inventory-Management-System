@@ -4,6 +4,7 @@ using InventoryManagementSystem.Implementations;
 using InventoryManagementSystem.Interface;
 using InventoryManagementSystem.Models;
 using InventoryManagementSystem.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementSystem.Controllers
@@ -11,6 +12,7 @@ namespace InventoryManagementSystem.Controllers
     [ApiController]
     [Route("api/order")]
     [CustomExceptionFilter]
+    [Authorize]
     public class OrderController : Controller
     {
         public IOrderService _orderservice;
