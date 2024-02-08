@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace InventoryManagementSystem.Exceptions
 {
     public class InsufficientInventoryException : Exception

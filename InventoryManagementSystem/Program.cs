@@ -64,4 +64,6 @@ app.MapControllers();
 
 app.UseEntityNotFoundMiddleware();
 
+app.UseBasicAuthenticationMiddleware();
+
 app.Run();

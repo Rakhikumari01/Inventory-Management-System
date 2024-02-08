@@ -3,10 +3,10 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace InventoryManagementSystem.Middlewares
 {
-    public class EntityNotFoundMiddleware
+    public class CustomMiddleware
     {
          private readonly RequestDelegate _next;
-        public EntityNotFoundMiddleware(RequestDelegate next) {
+        public CustomMiddleware(RequestDelegate next) {
         
           _next = next;
         }
@@ -18,7 +18,7 @@ namespace InventoryManagementSystem.Middlewares
 
                 await _next(httpContext);
             }
-            catch (EntityNotFoundException ex)
+            catch (CustomException ex)
             {
                 httpContext.Response.StatusCode = 404;
                 var message = ex.Message;
@@ -36,7 +36,7 @@ namespace InventoryManagementSystem.Middlewares
     {
         public static IApplicationBuilder UseEntityNotFoundMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<EntityNotFoundMiddleware>();
+            return builder.UseMiddleware<CustomMiddleware>();
         }
     }
 }

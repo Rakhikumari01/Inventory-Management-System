@@ -25,19 +25,12 @@ namespace InventoryManagementSystem.Controllers
         [Route("")]
         public IActionResult AddOrder(OrderDto orderDto)
         {
-            try
-            {
-                _orderservice.AddOrder(orderDto);
-                return Ok();
-            }
-          catch (InsufficientInventoryException ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+            _orderservice.AddOrder(orderDto);
+            return Ok();
         }
 
         [HttpGet("{id}")]
-        public ViewOrder GetOrderById(int id)
+        public ViewOrderDto GetOrderById(int id)
         {
             return _orderservice.GetOrder(id);
         }
@@ -51,6 +44,12 @@ namespace InventoryManagementSystem.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IActionResult UpdateOrder(int id,OrderDto orderDto)
+        {
+            _orderservice.Upadte(id,orderDto);
+            return Ok();
+        }
 
     }
 }

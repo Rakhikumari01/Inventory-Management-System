@@ -48,10 +48,16 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpGet("{id}")]
-        public ViewProduct GetProduct(int id)
+        public ViewProductDto GetProduct(int id)
         {
             return _productService.GetProduct(id);
 
+        }
+
+        [HttpGet]
+        public ICollection<ViewProductDto> GetAllProduct()
+        {
+            return _productService.GetAllProduct();
         }
     }
 }

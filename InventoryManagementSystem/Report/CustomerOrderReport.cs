@@ -11,14 +11,14 @@ namespace InventoryManagementSystem.Models
 
         public string email { get; set; }
 
-        public ICollection<ViewOrder> Orders { get; set; }
+        public ICollection<ViewOrderDto> Orders { get; set; }
 
-        public CustomerOrderReport(Customer customer,ICollection<Order> orders, IRepository<Product> _prodRepo)
+        public CustomerOrderReport(Customer customer, ICollection<Order> orders, IRepository<Product> _prodRepo)
         {
-            ICollection<ViewOrder> viewOrders = new List<ViewOrder>();
-              foreach(var  o in orders)
+            ICollection<ViewOrderDto> viewOrders = new List<ViewOrderDto>();
+            foreach (var o in orders)
             {
-                viewOrders.Add(new ViewOrder(o, _prodRepo));
+                viewOrders.Add(new ViewOrderDto(o, _prodRepo));
             }
             FistName = customer.FistName;
             LastName = customer.LastName;

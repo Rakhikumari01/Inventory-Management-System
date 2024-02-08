@@ -6,7 +6,11 @@ namespace InventoryManagementSystem.Interface
     {
 
         void AddOrder(OrderDto orderDto);
-        ViewOrder GetOrder(int id);
+        ViewOrderDto GetOrder(int id);
         void DeleteOrder(int  id);
+        void Upadte(int id,OrderDto orderDto);
+
+        
+
     }
 }

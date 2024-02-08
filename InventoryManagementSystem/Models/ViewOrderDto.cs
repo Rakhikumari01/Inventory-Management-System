@@ -4,19 +4,19 @@ using InventoryManagementSystem.IRepository;
 namespace InventoryManagementSystem.Models
 {
     
-        public class ViewOrder
+        public class ViewOrderDto
         {
             public int Quantity { get; set; }
             public string Status { get; set; }
-            public ViewProduct Product { get; set; }
+            public ViewProductDto Product { get; set; }
 
-            public ViewOrder() { }
+            public ViewOrderDto() { }
 
-            public ViewOrder(Order order, IRepository<Product> _prodrepo)
+            public ViewOrderDto(Order order, IRepository<Product> _prodrepo)
             {
                 Quantity = order.Quantity;
                 Status = order.Status;
-                Product = new ViewProduct(_prodrepo.Get(order.ProductId));
+                Product = new ViewProductDto(_prodrepo.Get(order.ProductId));
             }
         }
 

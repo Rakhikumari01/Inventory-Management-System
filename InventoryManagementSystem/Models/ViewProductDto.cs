@@ -4,7 +4,7 @@ using InventoryManagementSystem.Repositories;
 
 namespace InventoryManagementSystem.Models
 {
-    public class ViewProduct
+    public class ViewProductDto
     {
         private object product;
 
@@ -14,7 +14,7 @@ namespace InventoryManagementSystem.Models
        
 
         
-        public ViewProduct(Product product)
+        public ViewProductDto(Product product)
         {
             ProductName = product.ProductName;
             Measurement = product.Measurement;

@@ -22,7 +22,7 @@ namespace InventoryManagementSystem.Service
             var p = orderDto.Quantity;
             if (p < 0)
             {
-                throw new EntityNotFoundException("quantity entered is invalid");
+                throw new CustomException("quantity entered is invalid");
             }
             var order = new Order()
             {
@@ -39,17 +39,25 @@ namespace InventoryManagementSystem.Service
 
         public void DeleteOrder(int id)
         {
-            CheckException(id);
-            _orderservice.Delete(id);
+            if (CheckException(id))
+            {
+                _orderservice.Delete(id);
+
+            }
+            else throw new CustomException("Order id not found");
+
         }
 
-        public ViewOrder GetOrder(int id)
+        public ViewOrderDto GetOrder(int id)
         {
-            CheckException(id);
-            return new ViewOrder(_orderservice.Get(id), _productservice);
+            if(CheckException(id))
+            {
+                return new ViewOrderDto(_orderservice.Get(id), _productservice);
+            }
 
+            else throw new CustomException("Order id not found");
         }
-        private void UpdateProductQuantity(int productId, int quantityChange)
+        public void UpdateProductQuantity(int productId, int quantityChange)
         {
             var product = _productservice.Get(productId);
 
@@ -61,18 +69,31 @@ namespace InventoryManagementSystem.Service
             }
         }
 
-        public void CheckException(int id)
+        public void Upadte(int id,OrderDto orderDto)
+        {
+            var updateOrder = new Order()
+            {
+                Id = id,
+                Quantity = orderDto.Quantity,
+                Status = orderDto.Status,
+                ProductId= orderDto.ProductId,
+                CustomerId= orderDto.CustomerId,
+
+            };
+            _orderservice.Update(updateOrder);
+
+        }
+
+
+        public bool CheckException(int id)
         {
             var order = _orderservice.Get(id);
             if (order != null)
             {
-                return;
+                return true;
             }
 
-            else
-            {
-                throw new EntityNotFoundException("order not found");
-            }
+            return false;
         }
 
     }

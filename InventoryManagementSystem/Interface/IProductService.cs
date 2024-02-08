@@ -9,11 +9,12 @@ namespace InventoryManagementSystem.Interface
 
         void AddProduct(ProductDto prouctDto);
 
-        ViewProduct GetProduct(int id);
+        ViewProductDto GetProduct(int id);
 
         void UpdateProduct(int id,ProductDto prouctDto);
 
         void DeleteProduct(int id);
 
+        public ICollection<ViewProductDto> GetAllProduct();
     }
 }

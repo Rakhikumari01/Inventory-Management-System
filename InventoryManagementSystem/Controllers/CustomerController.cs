@@ -18,8 +18,8 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpPost]
-        
-        public IActionResult AddCustomerController(CustomerDto customerDto) 
+
+        public IActionResult AddCustomerController(CustomerDto customerDto)
         {
 
             _customerService.AddCustomer(customerDto);
@@ -27,10 +27,10 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpPatch]
-      
-        public IActionResult UpdateCustomerController(int id ,CustomerDto customerDto)
-        { 
-           _customerService.UpdateCustomer(id, customerDto);
+
+        public IActionResult UpdateCustomerController(int id, CustomerDto customerDto)
+        {
+            _customerService.UpdateCustomer(id, customerDto);
 
             return Ok();
         }
@@ -44,15 +44,11 @@ namespace InventoryManagementSystem.Controllers
         }
 
         [HttpGet("get/{id}")]
-       public CustomerReport GetCustomerById(int id)
+        public CustomerReport GetCustomerById(int id)
         {
             return _customerService.GetCustomer(id);
         }
 
-        [HttpGet("getOrderCustomer/{id}")]
-        public CustomerOrderReport GetOrderCustomerView(int id)
-        {
-            return _customerService.GetOrdersByCustomers(id);
-        }
+        
     }
 }

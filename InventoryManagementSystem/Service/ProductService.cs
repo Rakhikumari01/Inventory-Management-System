@@ -6,6 +6,7 @@ using InventoryManagementSystem.Repositories;
 using System.Net;
 using System.Net.Http;
 using InventoryManagementSystem.Exceptions;
+
 namespace InventoryManagementSystem.Implementations
 {
     public class ProductService : Interface.IProductService  
@@ -22,7 +23,7 @@ namespace InventoryManagementSystem.Implementations
             var q = prouctDto.Quantity;
             if(q < 0)
             {
-                throw new EntityNotFoundException("quantity entered is invalid");
+                throw new CustomException("quantity entered is invalid");
             }
 
             var addProduct = new Product()
@@ -39,20 +40,26 @@ namespace InventoryManagementSystem.Implementations
 
         public void DeleteProduct(int id)
         {
-             CheckException(id);
-            _productRepository.Delete(id);
+             if(CheckException(id))
+            {
+                _productRepository.Delete(id);
+            }
+            throw new CustomException("product id not found");
 
         }
 
-        public ViewProduct GetProduct(int id)
+        public ViewProductDto GetProduct(int id)
         {
-            CheckException(id);
-            return new ViewProduct(_productRepository.Get(id));
+            if(CheckException(id))
+            {
+                return new ViewProductDto(_productRepository.Get(id));
+            }
+            throw new CustomException("product id not found");
         }
 
         public void UpdateProduct(int id, ProductDto prouctDto)
         {
-            CheckException(id);
+           
             var updateProduct = new Product()
             {
                 Id = id,
@@ -63,22 +70,29 @@ namespace InventoryManagementSystem.Implementations
             };
 
 
-            var entry = _productRepository.Update(updateProduct);
+             _productRepository.Update(updateProduct);
        
         }
 
-        public void CheckException(int id)
+        public bool CheckException(int id)
         {
             var product = _productRepository.Get(id);
             if (product != null)
             {
-                return;
+                return true;
             }
+            return false;
+        }
 
-            else
+        public ICollection<ViewProductDto> GetAllProduct()
+        {
+            ICollection<ViewProductDto> productList = new List<ViewProductDto>();
+            var prods =_productRepository.GetAll(null);
+            foreach (var product in prods)
             {
-                throw new EntityNotFoundException("product not found");
+                productList.Add(new ViewProductDto(product));
             }
+            return productList;
         }
     }
 }

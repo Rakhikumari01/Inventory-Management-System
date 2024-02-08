@@ -14,6 +14,7 @@ namespace InventoryManagementSystem.Interface
 
         public CustomerOrderReport GetOrdersByCustomers(int id);
 
+      
 
     }
 }

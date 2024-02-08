@@ -35,19 +35,24 @@ namespace InventoryManagementSystem.Service
 
         public void DeleteCustomer(int id)
         {
-            CheckEntityNotFound(id);
-          _customerRepository.Delete(id);
+            if (CheckEntityNotFound(id))
+            {
+                _customerRepository.Delete(id);
+            }
+            else throw new CustomException("Customer id not found");
         }
 
         public CustomerReport GetCustomer(int id)
         {
-            CheckEntityNotFound(id);
-            return new CustomerReport(_customerRepository.Get(id));
+            if(CheckEntityNotFound(id))
+            {
+                return new CustomerReport(_customerRepository.Get(id));
+            }
+            else throw new CustomException("Customer id not found");
         }
 
         public void UpdateCustomer(int id, CustomerDto customerDto)
         {
-            CheckEntityNotFound(id);
             var updateCustomer = new Customer()
 
             {
@@ -59,21 +64,21 @@ namespace InventoryManagementSystem.Service
             };
 
 
-            var entry = _customerRepository.Update(updateCustomer);
+           _customerRepository.Update(updateCustomer);
            
         }
 
         public CustomerOrderReport GetOrdersByCustomers(int id)
         {
-            CheckEntityNotFound(id);
-
+            if(CheckEntityNotFound(id))
+            {
 
                 var customer = _customerRepository.Get(id);
 
-                if (customer!=null)
+                if (customer != null)
                 {
-                    var ordersForCustomer = _orderRepository.GetAll().Where(c=> c.CustomerId == id).ToList();
-                     var c = new CustomerOrderReport(customer, ordersForCustomer, _productRepository);
+                    var ordersForCustomer = _orderRepository.GetAll().Where(c => c.CustomerId == id).ToList();
+                    var c = new CustomerOrderReport(customer, ordersForCustomer, _productRepository);
 
                     return c;
                 }
@@ -81,21 +86,24 @@ namespace InventoryManagementSystem.Service
                 {
                     return null;
                 }
+            }
+
+            else throw new CustomException("Customer id not found");
+
         }
 
 
-        public void CheckEntityNotFound(int id)
+        public bool CheckEntityNotFound(int id)
         {
             var customer = _customerRepository.Get(id);
             if (customer != null)
             {
-                return;
+                return true;
             }
 
-            else
-            {
-                throw new EntityNotFoundException("customer not found");
-            }
+            return false;
         }
+
+      
     }
 }

@@ -22,5 +22,6 @@ namespace InventoryManagementSystem.Domain
         public int Quantity { get; set; }
 
         public String Status { get; set; }
+      
     }
 }
